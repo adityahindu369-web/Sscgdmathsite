@@ -2,147 +2,758 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAMPIONS 26.0 Maths Special LIVE - Subjects</title>
     <style>
-        /* Base Reset */
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f8fafc; /* Very light grey/blue */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-            color: #1e293b;
+            box-sizing: border-box;
         }
 
-        /* Premium Header */
-        .header {
-            background: #ffffff;
-            padding: 55px 20px 20px 20px;
-            position: sticky;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #000;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .modal-overlay {
+            position: fixed;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #e2e8f0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
             display: flex;
+            justify-content: center;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            z-index: 1000;
+            padding: 20px;
         }
 
-        .back-icon {
-            font-size: 32px;
-            color: #2563eb;
-            margin-right: 12px;
-            line-height: 0;
-            margin-top: -4px;
+        .modal-overlay.hidden {
+            display: none;
         }
 
-        .title {
-            font-size: 22px;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -0.5px;
+        .modal-content {
+            background: linear-gradient(to bottom, #1a2a1a 0%, #0d1a0d 100%);
+            border-radius: 25px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #2d4a2d;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
-        /* List Styling */
-        .container {
-            padding: 16px;
-        }
-
-        /* Premium Card Design */
-        .item-card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-            transition: all 0.2s ease;
-        }
-
-        /* Ripple effect on click */
-        .item-card:active {
-            transform: scale(0.97);
-            background-color: #f1f5f9;
-        }
-
-        /* Topic Number */
-        .number-tag {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            color: #2563eb;
-            border-radius: 12px;
+        .whatsapp-icon {
+            width: 90px;
+            height: 90px;
+            background: #25D366;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 14px;
-            margin-right: 15px;
-            flex-shrink: 0;
+            margin: 0 auto 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
 
-        /* Text Styling */
-        .topic-name {
+        .whatsapp-icon svg {
+            width: 50px;
+            height: 50px;
+            fill: white;
+        }
+
+        .modal-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .modal-subtitle {
+            color: #8a8a8a;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .modal-updates {
+            color: #25D366;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        .join-btn {
+            background: #25D366;
+            color: #000;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .join-btn:active {
+            transform: scale(0.98);
+        }
+
+        .join-btn:hover {
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .join-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: #000;
+        }
+
+        .already-joined {
+            color: #5a5a5a;
+            font-size: 15px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .already-joined:hover {
+            color: #7a7a7a;
+        }
+
+        .header {
+            background: transparent;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-btn {
+            display: none;
+        }
+
+        .header-title {
+            color: WHITE;
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            background: #000;
+        }
+
+        .subject-card {
+            background: #1E1E26;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            font-size: 17px;
+            color: #FFFFFF;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(98, 110, 239, 0.2);
+            border-bottom: 2px solid #626EEF;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            text-align: center;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #626EEF 0%, #D4AF37 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .subject-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .subject-card:active {
+            transform: scale(0.98);
+        }
+
+        .subject-card:hover {
+            box-shadow: 0 6px 20px rgba(98, 110, 239, 0.4);
+            transform: translateY(-3px);
+            border-bottom-color: #D4AF37;
+        }
+
+        .chapter-list {
+            display: none;
+        }
+
+        .chapter-list.active {
+            display: block;
+        }
+
+        .chapter-card {
+            background: #2a2a35;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #FFFFFF;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #25D366;
+            text-decoration: none;
+            display: block;
+        }
+
+        .chapter-card:hover {
+            background: #353542;
+            transform: translateX(5px);
+        }
+
+        .chapter-card:active {
+            transform: scale(0.98);
+        }
+
+        .back-to-subjects {
+            background: #626EEF;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: 600;
-            color: #334155;
-            flex-grow: 1;
+            cursor: pointer;
+            margin-bottom: 20px;
+            width: 100%;
+            transition: all 0.3s ease;
         }
 
-        /* Arrow/Chevron */
-        .chevron {
-            width: 8px;
-            height: 8px;
-            border-top: 2.5px solid #cbd5e1;
-            border-right: 2.5px solid #cbd5e1;
-            transform: rotate(45deg);
-            margin-right: 5px;
+        .back-to-subjects:hover {
+            background: #4a58e8;
         }
 
-        /* Hide Scrollbar */
-        ::-webkit-scrollbar {
-            display: none;
+        .subject-title {
+            color: #25D366;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid #25D366;
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 35px 25px;
+            }
+
+            .modal-title {
+                font-size: 28px;
+            }
+
+            .whatsapp-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .whatsapp-icon svg {
+                width: 45px;
+                height: 45px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="whatsapp-icon">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.816.736 5.464 2.014 7.762L.064 30.935l7.516-1.97A15.937 15.937 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333c-2.4 0-4.658-.636-6.616-1.746l-.473-.28-4.91 1.287 1.31-4.785-.308-.492A13.283 13.283 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/>
+                    <path d="M12.136 9.52c-.285-.632-.586-.645-.858-.656-.222-.009-.476-.008-.73-.008-.255 0-.668.096-.1018.475-.366.38-1.397 1.365-1.397 3.328 0 1.964 1.429 3.862 1.628 4.127.198.265 2.8 4.272 6.782 5.992.947.409 1.688.654 2.265.837.951.302 1.816.26 2.5.157.762-.114 2.347-.96 2.678-1.887.331-.927.331-1.722.232-1.887-.1-.165-.365-.265-.762-.464-.397-.199-2.348-1.159-2.713-1.291-.365-.133-.631-.199-.897.199-.265.397-1.03 1.291-1.262 1.557-.232.265-.464.298-.861.1-.397-.2-1.678-.619-3.196-1.973-1.182-1.053-1.98-2.354-2.212-2.751-.232-.397-.025-.612.175-.81.179-.178.397-.464.596-.696.198-.232.265-.398.397-.663.133-.265.066-.497-.033-.696-.1-.199-.897-2.162-1.229-2.96z"/>
+                </svg>
+            </div>
+            <div class="modal-title">OFFICIAL CHANNEL</div>
+            <div class="modal-subtitle">Join kar lo more free apps ke liye.</div>
+            <div class="modal-updates">ALL NEW UPDATES</div>
+            <a href="https://whatsapp.com/channel/0029Vb7dU6OFi8xZakWrnz42" class="join-btn" target="_blank">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.816.736 5.464 2.014 7.762L.064 30.935l7.516-1.97A15.937 15.937 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333c-2.4 0-4.658-.636-6.616-1.746l-.473-.28-4.91 1.287 1.31-4.785-.308-.492A13.283 13.283 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/>
+                    <path d="M12.136 9.52c-.285-.632-.586-.645-.858-.656-.222-.009-.476-.008-.73-.008-.255 0-.668.096-.1018.475-.366.38-1.397 1.365-1.397 3.328 0 1.964 1.429 3.862 1.628 4.127.198.265 2.8 4.272 6.782 5.992.947.409 1.688.654 2.265.837.951.302 1.816.26 2.5.157.762-.114 2.347-.96 2.678-1.887.331-.927.331-1.722.232-1.887-.1-.165-.365-.265-.762-.464-.397-.199-2.348-1.159-2.713-1.291-.365-.133-.631-.199-.897.199-.265.397-1.03 1.291-1.262 1.557-.232.265-.464.298-.861.1-.397-.2-1.678-.619-3.196-1.973-1.182-1.053-1.98-2.354-2.212-2.751-.232-.397-.025-.612.175-.81.179-.178.397-.464.596-.696.198-.232.265-.398.397-.663.133-.265.066-.497-.033-.696-.1-.199-.897-2.162-1.229-2.96z"/>
+                </svg>
+                JOIN NOW
+            </a>
+            <div class="already-joined" onclick="closeModal()">I have already joined</div>
+        </div>
+    </div>
 
     <div class="header">
-        <span class="back-icon">&#8249;</span>
-        <div class="title">SSC GD MATH</div>
+        <button class="back-btn"></button>
+        <div class="header-title"></div>
     </div>
 
-    <div class="container">
-        <div class="item-card"><div class="number-tag">01</div><div class="topic-name">Calculation</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">02</div><div class="topic-name">Percentage</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">03</div><div class="topic-name">Profit & Loss</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">04</div><div class="topic-name">Discount</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">05</div><div class="topic-name">Simple Interest</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">06</div><div class="topic-name">Compound Interest</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">07</div><div class="topic-name">Time & Work</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">08</div><div class="topic-name">Pipe & Cistern</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">09</div><div class="topic-name">Time, Speed & Distance</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">10</div><div class="topic-name">Train</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">11</div><div class="topic-name">Race</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">12</div><div class="topic-name">Circular Motion</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">13</div><div class="topic-name">Boat & Stream</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">14</div><div class="topic-name">Ratio</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">15</div><div class="topic-name">Proportion</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">16</div><div class="topic-name">Ages</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">17</div><div class="topic-name">Partnership</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">18</div><div class="topic-name">Mixture</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">19</div><div class="topic-name">Alligation</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">20</div><div class="topic-name">Average</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">21</div><div class="topic-name">Simplification</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">22</div><div class="topic-name">Surds & Indices</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">23</div><div class="topic-name">Number System</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">24</div><div class="topic-name">Arithmetic Progression (AP)</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">25</div><div class="topic-name">Geometric Progression (GP)</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">26</div><div class="topic-name">HCF & LCM</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">27</div><div class="topic-name">Mensuration 2D</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">28</div><div class="topic-name">Mensuration 3D</div><div class="chevron"></div></div>
+    <div class="content" id="mainContent">
+        <!-- Subjects List (Default View) -->
+        <div id="subjectsList">
+            <!-- All subjects will be dynamically added here -->
+        </div>
+
+        <!-- Chapters Lists (Hidden by default) -->
+        <div id="chaptersContainer">
+            <!-- All chapter lists will be dynamically added here -->
+        </div>
     </div>
 
+    <script>
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+        }
+
+        // Show modal on page load
+        window.addEventListener('load', function() {
+            document.getElementById('modalOverlay').classList.remove('hidden');
+            
+            // Load subjects after modal
+            setTimeout(loadSubjects, 100);
+        });
+
+        // Complete data structure with ALL subjects and chapters
+        const subjectsData = [
+            {
+                name: "ᴄᴀʟᴄᴜʟᴀᴛɪᴏɴ ᴠɪᴅᴇᴏꜱ",
+                id: "calculation",
+                chapters: [
+                    { name: "digital sum 01", link: "https://filetolink82ii-1-a84d33b9aa38.herokuapp.com/stream/993086?hash=635eca" },
+                    { name: "digital sum 02", link: "https://filetolink82ii-1-a84d33b9aa38.herokuapp.com/stream/993088?hash=6e0b28" },
+                    { name: "Calculation 01", link: "#" },
+                    { name: "Calculation 02", link: "#" },
+                    { name: "Calculation 03", link: "#" },
+                    { name: "Calculation 04", link: "#" },
+                    { name: "Calculation 05", link: "#" },
+                    { name: "Calculation 06", link: "#" }
+                ]
+            },
+            {
+                name: "ᴘᴇʀᴄᴇɴᴛᴀɢᴇ (प्रतिशत)",
+                id: "percentage",
+                chapters: [
+                    { name: "percentage 01", link: "#" },
+                    { name: "percentage 02", link: "#" },
+                    { name: "percentage 03", link: "#" },
+                    { name: "percentage 04", link: "#" },
+                    { name: "percentage 05", link: "#" },
+                    { name: "percentage 06", link: "#" },
+                    { name: "percentage 07", link: "#" },
+                    { name: "percentage 08", link: "#" },
+                    { name: "percentage 09", link: "#" },
+                    { name: "percentage 10", link: "#" },
+                    { name: "percentage 11", link: "#" },
+                    { name: "percentage 12", link: "#" }
+                ]
+            },
+            {
+                name: "ᴘʀᴏꜰɪᴛ & ʟᴏꜱꜱ (लाभ और हानि)",
+                id: "profit-loss",
+                chapters: [
+                    { name: "profit & loss 01", link: "#" },
+                    { name: "profit & loss 02", link: "#" },
+                    { name: "profit & loss 03", link: "#" },
+                    { name: "profit & loss 04", link: "#" },
+                    { name: "profit & loss 05", link: "#" },
+                    { name: "profit & loss 06", link: "#" },
+                    { name: "profit & loss 07", link: "#" },
+                    { name: "profit & loss 08", link: "#" },
+                    { name: "profit & loss 09", link: "#" },
+                    { name: "profit & loss 10", link: "#" }
+                ]
+            },
+            {
+                name: "ᴅɪꜱᴄᴏᴜɴᴛ (बट्टा)",
+                id: "discount",
+                chapters: [
+                    { name: "discount 01", link: "#" },
+                    { name: "discount 02", link: "#" },
+                    { name: "discount 03", link: "#" },
+                    { name: "discount 04", link: "#" },
+                    { name: "discount 05", link: "#" },
+                    { name: "discount 06", link: "#" }
+                ]
+            },
+            {
+                name: "ꜱɪᴍᴘʟᴇ ɪɴᴛᴇʀᴇꜱᴛ (साधारण ब्याज)",
+                id: "simple-interest",
+                chapters: [
+                    { name: "simple interest 01", link: "#" },
+                    { name: "simple interest 02", link: "#" },
+                    { name: "simple interest 03", link: "#" },
+                    { name: "S. I. (installment)", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄᴏᴍᴘᴏᴜɴᴅ ɪɴᴛᴇʀᴇꜱᴛ (चक्रवृद्धि ब्याज)",
+                id: "compound-interest",
+                chapters: [
+                    { name: "compound interest 01", link: "#" },
+                    { name: "compound interest 02", link: "#" },
+                    { name: "compound interest 03", link: "#" },
+                    { name: "compound interest 04", link: "#" },
+                    { name: "compound interest 05", link: "#" },
+                    { name: "compound interest 06", link: "#" },
+                    { name: "compound interest 07", link: "#" },
+                    { name: "C. I (installment)", link: "#" }
+                ]
+            },
+            {
+                name: "ᴛɪᴍᴇ , ꜱᴘᴇᴇᴅ & ᴅɪꜱᴛᴀɴᴄᴇ",
+                id: "time-speed-distance",
+                chapters: [
+                    { name: "Time, Speed & Distance 01", link: "#" },
+                    { name: "Time, Speed & Distance 02", link: "#" },
+                    { name: "Time, Speed & Distance 03", link: "#" },
+                    { name: "Time, Speed & Distance 04", link: "#" },
+                    { name: "Time, Speed & Distance 05", link: "#" },
+                    { name: "Time, Speed & Distance 06", link: "#" },
+                    { name: "Time, Speed & Distance 07", link: "#" },
+                    { name: "Time, Speed & Distance 08", link: "#" },
+                    { name: "Time, Speed & Distance 09", link: "#" },
+                    { name: "Time, Speed & Distance 10", link: "#" }
+                ]
+            },
+            {
+                name: "ᴛɪᴍᴇ & ᴡᴏʀᴋ",
+                id: "time-work",
+                chapters: [
+                    { name: "Time & Work 01", link: "#" },
+                    { name: "Time & Work 02", link: "#" },
+                    { name: "Time & Work 03", link: "#" },
+                    { name: "Time & Work 04", link: "#" },
+                    { name: "Time & Work 05", link: "#" },
+                    { name: "Time & Work 06", link: "#" },
+                    { name: "Time & Work 07", link: "#" },
+                    { name: "Time & Work 08", link: "#" },
+                    { name: "Time & Work 09", link: "#" },
+                    { name: "Time & Work 10", link: "#" }
+                ]
+            },
+            {
+                name: "ᴘɪᴘᴇ & ᴄɪꜱᴛᴇʀɴ",
+                id: "pipe-cistern",
+                chapters: [
+                    { name: "Pipe & Cistern 01", link: "#" },
+                    { name: "Pipe & Cistern 02", link: "#" },
+                    { name: "Pipe & Cistern 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴛʀᴀɪɴ",
+                id: "train",
+                chapters: [
+                    { name: "Train 01", link: "#" },
+                    { name: "Train 02", link: "#" },
+                    { name: "Train 03", link: "#" },
+                    { name: "Train 04", link: "#" },
+                    { name: "Train 05", link: "#" },
+                    { name: "Train 06", link: "#" }
+                ]
+            },
+            {
+                name: "ʀᴀᴄᴇ",
+                id: "race",
+                chapters: [
+                    { name: "Race 01", link: "#" },
+                    { name: "Race 02", link: "#" },
+                    { name: "Race 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄɪʀᴄᴜʟᴀʀ ᴍᴏᴛɪᴏɴ",
+                id: "circular-motion",
+                chapters: [
+                    { name: "Complete", link: "#" }
+                ]
+            },
+            {
+                name: "ʙᴏᴀᴛ & ꜱᴛʀᴇᴀᴍ",
+                id: "boat-stream",
+                chapters: [
+                    { name: "Boat & Stream 01", link: "#" },
+                    { name: "Boat & Stream 02", link: "#" },
+                    { name: "Boat & Stream 03", link: "#" },
+                    { name: "Boat & Stream 04", link: "#" },
+                    { name: "Boat & Stream 05", link: "#" }
+                ]
+            },
+            {
+                name: "ʀᴀᴛɪᴏ (अनुपात)",
+                id: "ratio",
+                chapters: [
+                    { name: "Ratio 01", link: "#" },
+                    { name: "Ratio 02", link: "#" },
+                    { name: "Ratio 03", link: "#" },
+                    { name: "Ratio 04", link: "#" },
+                    { name: "Ratio 05", link: "#" },
+                    { name: "Ratio 06", link: "#" },
+                    { name: "Ratio 07", link: "#" },
+                    { name: "Ratio 08", link: "#" },
+                    { name: "Ratio 09", link: "#" },
+                    { name: "Ratio 10", link: "#" },
+                    { name: "Ratio 11", link: "#" },
+                    { name: "Ratio 12", link: "#" }
+                ]
+            },
+            {
+                name: "ʜᴄꜰ & ʟᴄᴍ",
+                id: "hcf-lcm",
+                chapters: [
+                    { name: "HCF & LCM 01", link: "#" },
+                    { name: "HCF & LCM 02", link: "#" },
+                    { name: "HCF & LCM 03", link: "#" },
+                    { name: "HCF & LCM 04", link: "#" },
+                    { name: "HCF & LCM 05", link: "#" },
+                    { name: "HCF & LCM 06", link: "#" },
+                    { name: "HCF & LCM 07", link: "#" },
+                    { name: "HCF & LCM 08", link: "#" },
+                    { name: "HCF & LCM 09", link: "#" },
+                    { name: "HCF & LCM 10", link: "#" }
+                ]
+            },
+            {
+                name: "ᴘʀᴏᴘᴏʀᴛɪᴏɴ (समानुपात)",
+                id: "proportion",
+                chapters: [
+                    { name: "Proportion 01", link: "#" },
+                    { name: "Proportion 02", link: "#" },
+                    { name: "Proportion 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴀɢᴇꜱ",
+                id: "ages",
+                chapters: [
+                    { name: "Ages 01", link: "#" },
+                    { name: "Ages 02", link: "#" },
+                    { name: "Ages 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴘᴀʀᴛɴᴇʀꜱʜɪᴘ",
+                id: "partnership",
+                chapters: [
+                    { name: "Partnership 01", link: "#" },
+                    { name: "Partnership 02", link: "#" },
+                    { name: "Partnership 03", link: "#" },
+                    { name: "Partnership 04", link: "#" },
+                    { name: "Partnership 05", link: "#" },
+                    { name: "Partnership 06", link: "#" },
+                    { name: "Partnership 07", link: "#" }
+                ]
+            },
+            {
+                name: "ᴍɪxᴛᴜʀᴇ",
+                id: "mixture",
+                chapters: [
+                    { name: "Mixture 01", link: "#" },
+                    { name: "Mixture 02", link: "#" },
+                    { name: "Mixture 03", link: "#" },
+                    { name: "Mixture 04", link: "#" },
+                    { name: "Mixture 05", link: "#" },
+                    { name: "Mixture 06", link: "#" },
+                    { name: "Mixture 07", link: "#" },
+                    { name: "Mixture 08", link: "#" }
+                ]
+            },
+            {
+                name: "ᴀʟʟɪɢᴀᴛɪᴏɴ",
+                id: "alligation",
+                chapters: [
+                    { name: "Alligation 01", link: "#" },
+                    { name: "Alligation 02", link: "#" },
+                    { name: "Alligation 03", link: "#" },
+                    { name: "Alligation 04", link: "#" },
+                    { name: "Alligation 05", link: "#" }
+                ]
+            },
+            {
+                name: "ᴀᴠᴇʀᴀɢᴇ (ɴᴇᴡ)",
+                id: "average",
+                chapters: [
+                    { name: "Average 01", link: "#" },
+                    { name: "Average 02", link: "#" },
+                    { name: "Average 03", link: "#" },
+                    { name: "Average 04", link: "#" },
+                    { name: "Average 05", link: "#" },
+                    { name: "Average 06", link: "#" },
+                    { name: "Average 07", link: "#" },
+                    { name: "Average 08", link: "#" },
+                    { name: "Average 09", link: "#" },
+                    { name: "Average 10", link: "#" },
+                    { name: "Average 11", link: "#" },
+                    { name: "Average 12", link: "#" },
+                    { name: "Average 13", link: "#" },
+                    { name: "Average 14", link: "#" },
+                    { name: "Average 15", link: "#" }
+                ]
+            },
+            {
+                name: "ꜱɪᴍᴘʟɪꜰɪᴄᴀᴛɪᴏɴ",
+                id: "simplification",
+                chapters: [
+                    { name: "Simplification 01", link: "#" },
+                    { name: "Simplification 02", link: "#" },
+                    { name: "Simplification 03", link: "#" },
+                    { name: "Simplification 04", link: "#" }
+                ]
+            },
+            {
+                name: "ꜱᴜʀᴅꜱ & ɪɴᴅɪᴄᴇꜱ",
+                id: "surd-indices",
+                chapters: [
+                    { name: "Surd & Indices 01", link: "#" },
+                    { name: "Surd & Indices 02", link: "#" },
+                    { name: "Surd & Indices 03", link: "#" },
+                    { name: "Surd & Indices 04", link: "#" },
+                    { name: "Surd & Indices 05", link: "#" },
+                    { name: "Surd & Indices 06", link: "#" },
+                    { name: "Surd & Indices 07", link: "#" },
+                    { name: "Surd & Indices 08", link: "#" },
+                    { name: "Surd & Indices 09", link: "#" }
+                ]
+            },
+            {
+                name: "ɴᴜᴍʙᴇʀ ꜱʏꜱᴛᴇᴍ (संख्या पद्धति)",
+                id: "number-system",
+                chapters: [
+                    { name: "Classification of No 01", link: "#" },
+                    { name: "Classification of No 02", link: "#" },
+                    { name: "Classification of No 03", link: "#" },
+                    { name: "Unit Digit No 01", link: "#" },
+                    { name: "Unit Digit No 02", link: "#" },
+                    { name: "Unit Digit No 03", link: "#" },
+                    { name: "Divisibility 01", link: "#" },
+                    { name: "Divisibility 02", link: "#" },
+                    { name: "Divisibility 03", link: "#" },
+                    { name: "Divisibility 04", link: "#" },
+                    { name: "Divisibility 05", link: "#" },
+                    { name: "Divisibility 06", link: "#" },
+                    { name: "Divisibility 07", link: "#" },
+                    { name: "Divisibility 08", link: "#" },
+                    { name: "Divisibility 09", link: "#" },
+                    { name: "Divisibility 10", link: "#" },
+                    { name: "Remainder 01", link: "#" },
+                    { name: "Remainder 02", link: "#" },
+                    { name: "Remainder 03", link: "#" },
+                    { name: "Remainder 04", link: "#" },
+                    { name: "Remainder 05", link: "#" },
+                    { name: "Remainder 06", link: "#" },
+                    { name: "Factor 01", link: "#" },
+                    { name: "Factor 02", link: "#" },
+                    { name: "Factor 03", link: "#" },
+                    { name: "Factor 04", link: "#" },
+                    { name: "No of Zeros 01", link: "#" },
+                    { name: "No of Zeros 02", link: "#" },
+                    { name: "No of Zeros 03", link: "#" }
+                ]
+            }
+        ];
+
+        function loadSubjects() {
+            const subjectsList = document.getElementById('subjectsList');
+            const chaptersContainer = document.getElementById('chaptersContainer');
+            
+            // Clear existing content
+            subjectsList.innerHTML = '';
+            chaptersContainer.innerHTML = '';
+            
+            // Add subjects
+            subjectsData.forEach((subject, index) => {
+                // Create subject card
+                const subjectCard = document.createElement('div');
+                subjectCard.className = 'subject-card';
+                subjectCard.textContent = subject.name;
+                subjectCard.onclick = () => showChapters(subject.id);
+                subjectsList.appendChild(subjectCard);
+                
+                // Create chapter list for this subject
+                const chapterList = document.createElement('div');
+                chapterList.className = 'chapter-list';
+                chapterList.id = `chapters-${subject.id}`;
+                
+                // Add back button
+                const backButton = document.createElement('button');
+                backButton.className = 'back-to-subjects';
+                backButton.textContent = '← Back to Subjects';
+                backButton.onclick = showSubjects;
+                chapterList.appendChild(backButton);
+                
+                // Add subject title
+                const subjectTitle = document.createElement('div');
+                subjectTitle.className = 'subject-title';
+                subjectTitle.textContent = subject.name;
+                chapterList.appendChild(subjectTitle);
+                
+                // Add chapters
+                subject.chapters.forEach(chapter => {
+                    const chapterCard = document.createElement('a');
+                    chapterCard.className = 'chapter-card';
+                    chapterCard.href = chapter.link;
+                    chapterCard.target = '_blank';
+                    chapterCard.textContent = chapter.name;
+                    chapterList.appendChild(chapterCard);
+                });
+                
+                chaptersContainer.appendChild(chapterList);
+            });
+        }
+
+        function showChapters(subjectId) {
+            // Hide all subjects
+            document.getElementById('subjectsList').style.display = 'none';
+            
+            // Hide all chapter lists
+            const allChapterLists = document.querySelectorAll('.chapter-list');
+            allChapterLists.forEach(list => {
+                list.classList.remove('active');
+            });
+            
+            // Show the selected chapter list
+            const selectedChapterList = document.getElementById(`chapters-${subjectId}`);
+            if (selectedChapterList) {
+                selectedChapterList.classList.add('active');
+            }
+        }
+
+        function showSubjects() {
+            // Show subjects list
+            document.getElementById('subjectsList').style.display = 'block';
+            
+            // Hide all chapter lists
+            const allChapterLists = document.querySelectorAll('.chapter-list');
+            allChapterLists.forEach(list => {
+                list.classList.remove('active');
+            });
+        }
+
+        // Initialize
+        loadSubjects();
+    </script>
 </body>
 </html>
